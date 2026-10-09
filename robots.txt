@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sophiaqian02.github.io/sitemap.xml
+Sitemap: https://blog.sophiaqian.com/sitemap.xml
