@@ -7,7 +7,7 @@ The root domain is the technical blog. The academic homepage remains at https://
 - `notebook/content/rubrics-and-rl.html`: English article body. Each FIG marker gives filename, intrinsic dimensions, caption, and PDF source page.
 - `notebook/content/graphrag.html`: existing GraphRAG article body.
 - `assets/rubric-rl/`: seven original experimental figures extracted from pages 15–17 of the supplied notes. The full private PDF is not published.
-- `assets/notebook.css`: colors, responsive layout, cards, and article typography.
+- `assets/notebook.css`: white-background serif styling, a centered 736px reading column, desktop side navigation, and mobile layouts.
 - `assets/notebook.js`: search, category filters, reading progress, and active section links. No external dependencies.
 - `scripts/build_notebook.py`: shared headers, navigation, article metadata, index cards, and generated routes.
 
@@ -22,3 +22,7 @@ Add the body under `notebook/content/`, generate it using `article()` in the bui
 ## Research provenance
 
 The Rubric-RL article is a preliminary interpretation of the user-supplied “Rubric-based OPD” notes, especially pages 15–17. Figures are original extracted images, not digitized or fabricated data. Small differences are not presented as statistically significant. Generator/judge and rubric-version confounds are identified. Future directions are separated from completed experiments.
+
+## Reading layout
+
+Articles use a Georgia/system-serif reading layout inspired by the reference at https://nrehiew.github.io/blog/sft_rl_opd/. At widths above 1250px the contents panel sits to the left of the centered article; on smaller screens it is a collapsible Contents control. The index uses a simple article list. Figures remain available at full resolution. Styles and scripts carry a version query in the builder; update it when publishing visual changes to avoid stale cached assets.
