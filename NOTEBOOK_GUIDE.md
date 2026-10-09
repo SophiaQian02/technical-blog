@@ -1,6 +1,6 @@
 # Technical notebook editing guide
 
-The root domain is the technical blog. The academic homepage remains at https://sophiaqian.com/ in its separate repository.
+The technical blog is https://blog.sophiaqian.com/, published from `SophiaQian02/technical-blog`. The academic homepage remains at https://sophiaqian.com/ in its separate repository.
 
 ## Edit and preview
 
@@ -25,3 +25,7 @@ The Rubric-RL article is a preliminary interpretation of the user-supplied “Ru
 ## Reading layout
 
 Articles use a Georgia/system-serif reading layout inspired by the reference at https://nrehiew.github.io/blog/sft_rl_opd/. At widths above 1250px the contents panel sits to the left of the centered article; on smaller screens it is a collapsible Contents control. The index uses a simple article list. Figures remain available at full resolution. Styles and scripts carry a version query in the builder; update it when publishing visual changes to avoid stale cached assets.
+
+## Domain and legacy links
+
+`CNAME` must contain `blog.sophiaqian.com`. Aliyun DNS uses a `blog` CNAME pointing to `sophiaqian02.github.io`. The separate `SophiaQian02.github.io` repository only serves redirects for old URLs; do not publish blog content there. Local blog source remains in `/Users/qianfeifei/Sophia-blog-publish`.
