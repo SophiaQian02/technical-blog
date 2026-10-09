@@ -1,6 +1,6 @@
 # Technical notebook editing guide
 
-The root domain is the technical blog. The academic homepage remains at https://sophiaqian02.github.io/Sophia_Qian.github.io/ in its separate repository.
+The root domain is the technical blog. The academic homepage remains at https://sophiaqian.com/ in its separate repository.
 
 ## Edit and preview
 

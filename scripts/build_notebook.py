@@ -3,7 +3,7 @@ from pathlib import Path
 import re
 from html import escape
 ROOT=Path(__file__).resolve().parents[1]
-ACADEMIC='https://sophiaqian02.github.io/Sophia_Qian.github.io/'
+ACADEMIC='https://sophiaqian.com/'
 RUBRIC='/2026/10/09/rubrics-and-rl/'
 TITLE='Do Rubrics Expand What RL Can Learn?'
 DESC='Experiments on rubric-guided post-training: judge choice, reward design, distillation, and the difference between sampling efficiency and reasoning coverage.'
@@ -41,5 +41,9 @@ old.write_text(re.sub(r'<a\b[^>]*href=[\"\']/2026/04/08/graph-rag/[\"\'][^>]*>.*
 import json
 write('search.json',json.dumps([{'title':TITLE,'path':RUBRIC,'content':DESC}],ensure_ascii=False))
 
-# Canonical blog pages; the academic site's sitemap is also listed in robots.txt.
+# Canonical blog pages; the academic domain serves its own sitemap.
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://sophiaqian02.github.io/</loc></url><url><loc>https://sophiaqian02.github.io' + RUBRIC + '</loc></url></urlset>\n')
+
+# Preserve bookmarked academic homepage routes after the repository rename.
+for old_path, target in [('Sophia_Qian.github.io/index.html', ACADEMIC), ('Sophia_Qian.github.io/blog/index.html', ACADEMIC+'blog/')]:
+ write(old_path, f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Feifei Qian — Academic Homepage</title><link rel="canonical" href="{target}"><meta http-equiv="refresh" content="0;url={target}"><script>location.replace("{target}"+location.search+location.hash)</script></head><body><a href="{target}">Continue to Feifei Qian’s academic homepage</a></body></html>''')

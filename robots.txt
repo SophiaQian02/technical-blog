@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://sophiaqian02.github.io/sitemap.xml
-Sitemap: https://sophiaqian02.github.io/Sophia_Qian.github.io/sitemap.xml
