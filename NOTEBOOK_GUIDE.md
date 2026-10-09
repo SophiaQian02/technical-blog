@@ -5,7 +5,6 @@ The root domain is the technical blog. The academic homepage remains at https://
 ## Edit and preview
 
 - `notebook/content/rubrics-and-rl.html`: English article body. Each FIG marker gives filename, intrinsic dimensions, caption, and PDF source page.
-- `notebook/content/graphrag.html`: existing GraphRAG article body.
 - `assets/rubric-rl/`: seven original experimental figures extracted from pages 15–17 of the supplied notes. The full private PDF is not published.
 - `assets/notebook.css`: white-background serif styling, a centered 736px reading column, desktop side navigation, and mobile layouts.
 - `assets/notebook.js`: search, category filters, reading progress, and active section links. No external dependencies.
@@ -13,7 +12,7 @@ The root domain is the technical blog. The academic homepage remains at https://
 
 Run `python3 scripts/build_notebook.py`, then `python3 -m http.server 8770 --bind 127.0.0.1`. Open http://127.0.0.1:8770/.
 
-Commit sources and generated HTML together. GitHub Pages serves the main branch root. `.nojekyll` keeps the generated static site unchanged. Historical archives and taxonomy pages remain available; the original GraphRAG route is preserved.
+Commit sources and generated HTML together. GitHub Pages serves the main branch root. `.nojekyll` keeps the generated static site unchanged. Historical archive and taxonomy pages retain their layouts, with links to the removed article cleared. The GraphRAG article has been removed.
 
 ## Adding an article
 
