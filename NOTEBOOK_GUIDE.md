@@ -1,0 +1,24 @@
+# Technical notebook editing guide
+
+The root domain is the technical blog. The academic homepage remains at https://sophiaqian02.github.io/Sophia_Qian.github.io/ in its separate repository.
+
+## Edit and preview
+
+- `notebook/content/rubrics-and-rl.html`: English article body. Each FIG marker gives filename, intrinsic dimensions, caption, and PDF source page.
+- `notebook/content/graphrag.html`: existing GraphRAG article body.
+- `assets/rubric-rl/`: seven original experimental figures extracted from pages 15–17 of the supplied notes. The full private PDF is not published.
+- `assets/notebook.css`: colors, responsive layout, cards, and article typography.
+- `assets/notebook.js`: search, category filters, reading progress, and active section links. No external dependencies.
+- `scripts/build_notebook.py`: shared headers, navigation, article metadata, index cards, and generated routes.
+
+Run `python3 scripts/build_notebook.py`, then `python3 -m http.server 8770 --bind 127.0.0.1`. Open http://127.0.0.1:8770/.
+
+Commit sources and generated HTML together. GitHub Pages serves the main branch root. `.nojekyll` keeps the generated static site unchanged. Historical archives and taxonomy pages remain available; the original GraphRAG route is preserved.
+
+## Adding an article
+
+Add the body under `notebook/content/`, generate it using `article()` in the builder, and add its card to the index. Add a link in the separate academic repository's `_pages/about.md` and `_pages/blog.md` as appropriate. The academic navigation's Technical Blog link points directly to the root notebook.
+
+## Research provenance
+
+The Rubric-RL article is a preliminary interpretation of the user-supplied “Rubric-based OPD” notes, especially pages 15–17. Figures are original extracted images, not digitized or fabricated data. Small differences are not presented as statistically significant. Generator/judge and rubric-version confounds are identified. Future directions are separated from completed experiments.
