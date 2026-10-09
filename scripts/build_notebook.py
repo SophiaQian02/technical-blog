@@ -19,7 +19,7 @@ def article(title,hero,content,path,lang='en',extras='',css=''):
  headings=re.findall(r'<h2 id="([^"]+)">(.*?)</h2>',content)
  toc=''.join(f'<li><a href="#{i}">{re.sub("<[^>]+>","",t)}</a></li>' for i,t in headings)
  body=f'''<div class="progress" aria-hidden="true"></div><main id="main" class="{css}"><header class="hero"><div class="wrap">{hero}</div></header>{extras}<div class="wrap reading-layout"><aside class="toc" aria-label="On this page"><span class="kicker">On this page</span><ol>{toc}</ol><a class="back" href="/">← All notes</a></aside><article class="prose">{content}<p><a href="/">← Back to all notes</a></p></article></div></main>'''
- write(path.strip('/')+'/index.html',shell(title,body,path,lang=lang,article=True))
+ write(path.strip('/')+'/index.html',shell(title,body,path,description=DESC if path==RUBRIC else 'GraphRAG technical notes: entities, communities, local search, and global retrieval.',lang=lang,article=True))
 content=(ROOT/'notebook/content/rubrics-and-rl.html').read_text()
 content=re.sub(r'\{\{FIG:([^|]+)\|(\d+)\|(\d+)\|([^|]+)\|(\d+)\}\}',fig,content)
 hero=f'''<span class="kicker">Field notes / 002 · Post-training</span><h1>Do Rubrics Expand<br><em>What RL Can Learn?</em></h1><p class="deck">Reading the evidence behind rubric-guided rewards, teacher feedback, and the limits of reasoning coverage.</p><div class="meta"><span>Feifei (Sophia) Qian</span><time datetime="2026-10-09">October 9, 2026</time><span>Preliminary experimental analysis</span></div><div class="tags"><span>Reinforcement learning</span><span>Rubrics</span><span>On-policy distillation</span></div>'''
