@@ -41,3 +41,6 @@ old=ROOT/'404.html'
 old.write_text(re.sub(r'<a\b[^>]*href=[\"\']/2026/04/08/graph-rag/[\"\'][^>]*>.*?</a>', '', old.read_text(), flags=re.S))
 import json
 write('search.json',json.dumps([{'title':TITLE,'path':RUBRIC,'content':DESC}],ensure_ascii=False))
+
+# Canonical blog pages; the academic site's sitemap is also listed in robots.txt.
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://sophiaqian02.github.io/</loc></url><url><loc>https://sophiaqian02.github.io' + RUBRIC + '</loc></url></urlset>\n')
