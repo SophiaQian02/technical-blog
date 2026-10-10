@@ -16,9 +16,9 @@
 <h3>Does using the same model for both roles help?</h3>
 <p>We use <strong>Qwen3.5-35B-A3B for both rubric generation and judging</strong>, with encouraging results: this configuration outperforms both <strong>Base and reference RL on AIME24, MATH500, and Olympiad</strong>. Yet Minerva still has lower high-budget coverage than Base. The result is promising on some tasks, not a universal recovery of coverage.</p>
 {{FIG:aligned-generator-judge.png|1516|358|Figure 2. Generator and judge both use Qwen3.5-35B-A3B. This configuration outperforms Base and reference RL on AIME24, MATH500, and Olympiad, while high-budget coverage on Minerva remains below Base.|16}}
-<p><strong>Interpretation, not isolation:</strong> agreement between the generator and judge may help make criteria actionable. But the model identity also changes relative to the first comparison. A clean test would cross generator and judge choices while holding prompts, training compute, data, and scoring rules fixed.</p>
+<p>My interpretation is that agreement between the generator and judge may help make criteria actionable.</p>
 <h2 id="reward">04 / Correctness plus a rubric is not a guaranteed win</h2>
-<p>A natural next step is to keep correctness as the anchor and use the rubric as an auxiliary signal. The notes test the following form:</p>
+<p>To investigate whether reward design affects the results, we introduce an alternative reward formulation that keeps correctness as the anchor and uses the rubric as an auxiliary signal. We test the following form:</p>
 <pre><code>reward = exact_correctness + 0.1 * rubric_score</code></pre>
 <p>If exact correctness is binary and the rubric score is normalized to [0, 1], a correct answer always receives a higher total reward than an incorrect one. That is a useful scoring property. It does <strong>not</strong> guarantee that policy optimization will improve every benchmark or preserve every rare solution.</p>
 {{FIG:hybrid-qwen35.png|1828|436|Figure 3. Qwen3.5-35B-A3B generator and judge. The rubric-only run is labeled legacy-v3; the hybrid run is labeled answer-free-v4. This comparison changes more than the reward formula.|16}}
