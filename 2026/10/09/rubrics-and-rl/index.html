@@ -42,9 +42,9 @@
 <h2 id="takeaways">What I would conclude today</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Experiments and conclusions"><table><thead><tr><th>Experiment</th><th>Conclusion</th></tr></thead><tbody>
 <tr><td>Fixed rubric generator with different judges (Figure 1)</td><td>Changing the judge changes the learned policy's performance, showing that the judge is an important part of the reward signal.</td></tr>
-<tr><td>Qwen3.5-35B-A3B as both generator and judge (Figure 2)</td><td>Rubric-based RL exceeds Base and reference RL on AIME24, MATH500, and Olympiad. Using a shared generator and judge is promising, although this experiment also changes the model identity.</td></tr>
-<tr><td>Rubric-only versus hybrid rewards (Figures 3–4)</td><td>Adding answer correctness to the rubric reward does not consistently improve performance. With Qwen3.5-35B-A3B, the hybrid configuration underperforms rubric-only RL on AIME24, MATH500, and Olympiad.</td></tr>
-<tr><td>Rubric-based RL versus SFT distillation (Figure 5)</td><td>With Qwen3.5-35B-A3B supervision, SFT distillation exceeds both Base and rubric-based RL on MATH500, Minerva, and Olympiad. Rubric-based RL performs better on AIME24.</td></tr>
+<tr><td>Qwen3.5-35B-A3B as both generator and judge (Figure 2)</td><td>Using a shared generator and judge is promising, although this experiment also changes the model identity.</td></tr>
+<tr><td>Rubric-only versus hybrid rewards (Figures 3–4)</td><td>Adding answer correctness to the rubric reward does not consistently improve performance.</td></tr>
+<tr><td>Rubric-based RL versus SFT distillation (Figure 5)</td><td>With Qwen3.5-35B-A3B supervision, SFT distillation exceeds both Base and rubric-based RL on MATH500, Minerva, and Olympiad.</td></tr>
 <tr><td>Rubric-based RL versus OPD with the same teacher (Figure 6)</td><td>At the largest evaluated budgets, rubric-only RL leads on AIME24 and MATH500, OPD leads on Minerva, and they tie on Olympiad. The form of supervision matters even with a fixed teacher.</td></tr>
 <tr><td>Policy-generated rubrics and self-judging (Figure 7)</td><td>The MATH500 and Olympiad trends suggest that self-generated rubric feedback can be useful without a stronger external teacher, motivating further work on jointly improving the policy and its feedback.</td></tr>
 </tbody></table></div>
