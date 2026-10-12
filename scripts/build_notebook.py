@@ -13,8 +13,29 @@ def shell(title,body,path='/',description=DESC,lang='en',article=False):
  return f'''<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)} · Sophia Qian</title><meta name="description" content="{escape(description)}"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="https://blog.sophiaqian.com{path}"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(description)}"><meta property="og:type" content="{'article' if article else 'website'}"><meta property="og:url" content="https://blog.sophiaqian.com{path}"><link rel="icon" href="/assets/cat-icon.png" type="image/png" sizes="192x192"><link rel="icon" href="/assets/notebook-icon.svg?v=cat" type="image/svg+xml"><link rel="apple-touch-icon" href="/assets/cat-icon.png"><link rel="stylesheet" href="/assets/notebook.css?v=20261009-serif"><script src="/assets/notebook.js?v=20261009-serif" defer></script></head><body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Sophia Qian<b> / notes</b></a><nav aria-label="Main navigation"><a href="/">Technical Blog</a><a href="{ACADEMIC}">Academic Homepage ↗</a></nav></div></header>{body}<footer class="site-footer"><div class="wrap"><span>© 2026 Feifei (Sophia) Qian · Research in progress</span><a href="{ACADEMIC}">Academic Homepage ↗</a><a href="mailto:Sophia0830BNU@gmail.com">Get in touch ↗</a></div></footer></body></html>'''
 def fig(m):
  name,w,h,caption,source=m.groups()
- return f'''<figure class="experiment"><div class="figure-head"><a href="/assets/rubric-rl/{name}" target="_blank" rel="noopener">Open full-size ↗</a></div><a href="/assets/rubric-rl/{name}" target="_blank" rel="noopener" aria-label="Open experiment figure full-size"><img src="/assets/rubric-rl/{name}" width="{w}" height="{h}" loading="lazy" decoding="async" alt="{escape(caption)}"></a><figcaption>{caption}</figcaption></figure>'''
+ return f'''<figure class="experiment"><div class="figure-head"><a href="/assets/rubric-rl/{name}" target="_blank" rel="noopener">Open full-size ↗</a></div><a href="/assets/rubric-rl/{name}" target="_blank" rel="noopener" aria-label="Open experiment figure full-size"><img src="/assets/rubric-rl/{name}" width="{w}" height="{h}" loading="lazy" decoding="async" alt="{escape(caption.replace(chr(36), chr(32)))}"></a><figcaption>{caption}</figcaption></figure>'''
+def render_math(content):
+ # Build-time MathML keeps math readable without a third-party script or CDN.
+ expressions = {
+  'k': '<mi>k</mi>',
+  'k = 1024': '<mi>k</mi><mo>=</mo><mn>1024</mn>',
+  'k = 128': '<mi>k</mi><mo>=</mo><mn>128</mn>',
+  '[0, 1]': '<mo>[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>]</mo>',
+  r'r = r_{\mathrm{correct}} + 0.1 \cdot r_{\mathrm{rubric}}': '<mi>r</mi><mo>=</mo><msub><mi>r</mi><mtext>correct</mtext></msub><mo>+</mo><mn>0.1</mn><mo>·</mo><msub><mi>r</mi><mtext>rubric</mtext></msub>',
+ }
+ for value in ('k', '1', '16'):
+  expressions[r'\mathrm{pass}@'+value] = '<mtext>pass</mtext><mo>@</mo>' + ('<mi>k</mi>' if value == 'k' else f'<mn>{value}</mn>')
+ def convert(match):
+  tex = match.group(2)
+  if tex not in expressions:
+   raise ValueError(f'Unsupported math expression: {tex}')
+  display = 'block' if match.group(1) == '$$' else 'inline'
+  return f'<math xmlns="http://www.w3.org/1998/Math/MathML" display="{display}"><semantics><mrow>{expressions[tex]}</mrow><annotation encoding="application/x-tex">{escape(tex)}</annotation></semantics></math>'
+ # Process visible text only; retain plain-text image alternatives.
+ return ''.join(part if part.startswith('<') else re.sub(r'(\${1,2})([^$]+)\1', convert, part) for part in re.split(r'(<[^>]+>)', content))
+
 def article(title,hero,content,path,lang='en',extras='',css=''):
+ content=render_math(content)
  content=re.sub(r'(<h2 id="[^"]+">)\d+ / ',r'\1',content)
  headings=re.findall(r'<h2 id="([^"]+)">(.*?)</h2>',content)
  toc=''.join(f'<li><a href="#{i}">{re.sub("<[^>]+>","",t)}</a></li>' for i,t in headings)
