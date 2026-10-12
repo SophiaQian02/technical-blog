@@ -39,7 +39,7 @@
 <p>This leaves an open question about the contribution of the rubrics themselves. To investigate it, we conduct a self-generated rubric experiment in which the <strong>policy model itself serves as both rubric generator and judge</strong>, with both roles evolving alongside the policy during training.</p>
 {{FIG:self-rubric.png|1438|348|Figure 7. Online self-rubric RL with Qwen2.5-7B. Some benchmarks improve, but AIME24 and Minerva remain below Base at the largest shown budgets.|17}}
 <p>The online self-rubric experiment shows encouraging MATH500 and Olympiad trends.</p>
-<h2 id="takeaways">06 / What I would conclude today</h2>
+<h2 id="takeaways">06 / What I would conclude</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Experiments and conclusions"><table><thead><tr><th>Experiment</th><th>Conclusion</th></tr></thead><tbody>
 <tr><td>Fixed rubric generator with different judges (Figure 1)</td><td>Changing the judge changes the learned policy's performance, showing that the judge is an important part of the reward signal.</td></tr>
 <tr><td>Qwen3.5-35B-A3B as both generator and judge (Figure 2)</td><td>Using a shared generator and judge is promising, although this experiment also changes the model identity.</td></tr>
